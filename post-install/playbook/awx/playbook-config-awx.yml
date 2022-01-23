@@ -75,3 +75,10 @@
         TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
         TOWER_USERNAME: "admin"
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
+
+    # - name: Create Credential Types
+
+    # - name: Create Credential
+
+    # - name: Create Schedule
+
