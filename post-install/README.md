@@ -37,11 +37,6 @@ master
 
 If needed, you can also edit `inventory/geeky-server-build/group_vars/all.yml` to match your environment.
 
-Start provisioning of the cluster using the following command:
-
-```bash
-./run.sh
-```
 
 ## Install `k3s` and `awx`
 This script will execute the palybook.
