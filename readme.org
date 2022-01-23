@@ -19,7 +19,7 @@ The purpose of this repository is to fully automate the installation and configu
 4. Power on the Raspberry Pi and wait until the installation is done
 
 ** Documentation
-The purpose of this repository is to fully automate the installation and configuration of raspberry-pi server as following:
+Steps:
 1. Build [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][Ubuntu-server on raspberry-pi]]
 2. Enable [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][remote ssh]]
 3. Install [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx][K3S with Ansible Playbook]]
