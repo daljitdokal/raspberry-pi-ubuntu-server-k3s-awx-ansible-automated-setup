@@ -1,4 +1,9 @@
-## Scope
+# -*- ii: ii; -*-
+#+TITLE: Ubuntu-server minimal setup
+#+AUTHOR: Daljit Singh
+#+EMAIL: daljit.dokal@yahoo.co.nz
+#+DATE: 28th April 2021
+
 The purpose of this repository is to fully automate the installation and configuration of raspberry-pi server as following:
 1. Build [Ubuntu-server raspberry-pi](documentation/server-setup.md)
 2. Enable remote ssh
