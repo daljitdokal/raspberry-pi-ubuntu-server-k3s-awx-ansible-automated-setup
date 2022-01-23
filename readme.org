@@ -20,8 +20,8 @@ The purpose of this repository is to fully automate the installation and configu
 
 ** Documentation
 The purpose of this repository is to fully automate the installation and configuration of raspberry-pi server as following:
-1. Build [[Ubuntu-server on raspberry-pi][https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md]]
-2. Enable [[remote ssh][https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md]]
-3. Install [[K3S with Ansible Playbook][https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx]]
-4. Install [[AWX with Ansible Playbook][https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx]]
-5. Configure and schedule awx jobs [[with Ansible Playbook][https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#configure-and-schedule-awx-job]]
+1. Build [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][Ubuntu-server on raspberry-pi]]
+2. Enable [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][remote ssh]]
+3. Install [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx][K3S with Ansible Playbook]]
+4. Install [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx][AWX with Ansible Playbook]]
+5. Configure and schedule awx jobs [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#configure-and-schedule-awx-job][with Ansible Playbook]]
