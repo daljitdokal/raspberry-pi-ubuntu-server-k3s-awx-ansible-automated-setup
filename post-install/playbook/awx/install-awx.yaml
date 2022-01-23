@@ -1,0 +1,29 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+spec:
+  service_type: NodePort
+  ingress_type: ingress
+  hostname: awx.geekywebmaster.com
+  service_labels: |
+    environment: production
+  web_resource_requirements:
+    requests:
+      cpu: 256m
+      memory: 512Mi
+    limits:
+      cpu: 512m
+      memory: 1024Mi
+  task_resource_requirements:
+    requests:
+      cpu: 256m
+      memory: 512Mi
+    limits:
+      cpu: 512m
+      memory: 1024Mi
+  image: daljitdokal/awx-arm64
+  image_version: 19.3.0
+  image_pull_policy: IfNotPresent
+  control_plane_ee_image: daljitdokal/awx-ee-arm64:0.6.0

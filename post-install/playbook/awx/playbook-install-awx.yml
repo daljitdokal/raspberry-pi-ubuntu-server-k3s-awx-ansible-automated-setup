@@ -1,0 +1,55 @@
+---
+- name: Install AWX
+  hosts: k3s_cluster
+  gather_facts: false
+  tasks:
+    - name: Create variables
+      set_fact:
+        get_awx_namespace: awx
+        set_local_path: "../awx/"
+        set_dest_path: "/tmp/install-awx"
+    
+    - name: Copy files to remote server
+      ansible.builtin.copy:
+        src: "{{ set_local_path }}"
+        dest: "{{ set_dest_path }}"
+      become: true
+
+    - name: Create new namespace
+      shell: |
+        k3s kubectl create namespace {{ get_awx_namespace }} --dry-run=client -o yaml | k3s kubectl apply -f -
+      become: true
+
+    - name: Deploy awx-operator
+      shell: |
+        cd {{ set_dest_path }}
+        k3s kubectl apply -f install-awx-operator.yaml -n {{ get_awx_namespace }}
+      become: true
+
+    - name: Create instance of awx
+      shell: |
+        cd {{ set_dest_path }}
+        k3s kubectl apply -f install-awx.yaml -n {{ get_awx_namespace }}
+        echo "Create instance of awx"
+      become: true
+
+    - name: Wait for pvc to be created
+      pause:
+        minutes: 3
+
+    - name: Update pvc permissions
+      shell: |
+        chown 999:root -R /var/lib/rancher/k3s/storage/$(ls -la /var/lib/rancher/k3s/storage | grep awx_postgres-awx-postgres | awk '{print $9}')
+      become: true
+
+    - name: Reset pods
+      shell: |
+        k3s kubectl delete pod awx-postgres-0 -n awx
+        k3s kubectl delete pod "$(k3s kubectl get pods -n awx | grep /4 | awk '{print $1}')" -n awx
+      become: true
+
+    - name: Remove copied files
+      ansible.builtin.file:
+        path: "{{ set_local_path }}"
+        state: absent
+      become: true
