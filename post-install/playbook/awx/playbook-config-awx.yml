@@ -6,6 +6,7 @@
     - ../../global_vars/awx_config_vars.yaml
   collections:
     - awx.awx
+
   tasks:
     - name: Create awx auth variables
       shell: |
@@ -15,7 +16,7 @@
       become: true
     
     - name: Create a new organization
-      tower_organization:
+      organization:
         name: "{{ set_tower_organization_name }}"
         description: "{{ set_tower_organization_name }}"
         state: present
@@ -25,7 +26,7 @@
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
     
     - name: Create an Inventory
-      tower_inventory:
+      inventory:
         name: "{{ set_tower_inventory_name }}"
         description: "{{ set_tower_inventory_name }}"
         organization: "{{ set_tower_organization_name }}"
@@ -39,7 +40,7 @@
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
     - name: Create a Host
-      tower_host:
+      host:
         name: "{{ set_tower_host_name }}"
         inventory: "{{ set_tower_inventory_name }}"
         state: present
@@ -51,7 +52,7 @@
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
     - name: Create a Project
-      tower_project:
+      project:
         name: "{{ set_tower_project_name }}"
         organization: "{{ set_tower_organization_name }}"
         scm_type: git
@@ -62,7 +63,7 @@
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
     - name: Create a Job Template
-      tower_job_template:
+      job_template:
         name: "{{ set_tower_job_template_name }}"
         project: "{{ set_tower_project_name }}"
         inventory: "{{ set_tower_inventory_name }}"
@@ -76,9 +77,29 @@
         TOWER_USERNAME: "admin"
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
-    # - name: Create Credential Types
-
+    - name: Create Credential Types
+      credential_type:
+        name: "{{ set_tower_credential_type_name }}"
+        description: "{{ set_tower_credential_type_name }}"
+        kind: cloud
+        inputs: {'fields':[{'id':'db_name','type':'string','label':'DB name','secret':false},{'id':'db_user_name','type':'string','label':'DB user name','secret':false},{'id':'db_user_password','type':'string','label':'DB user password','secret':true}],'required':['db_name','db_user_name','db_user_password']}
+        injectors:
+          extra_vars:
+            db_name: '{{ set_tower_credential_type_db_name }}'
+            db_user_name: '{{ set_tower_credential_type_db_user_name }}'
+            db_user_password: '{{ set_tower_credential_type_db_user_password }}'
+        state: present
+        validate_certs: false
+      environment:
+        TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
+        TOWER_USERNAME: "admin"
+        TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
+        
     # - name: Create Credential
+  #   - name: Fetch private key
+  # slurp:
+  #   src: '$HOME/.ssh/aws-private.pem'
+  # register: aws_ssh_key
 
     # - name: Create Schedule
 
