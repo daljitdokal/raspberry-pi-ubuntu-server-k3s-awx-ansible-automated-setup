@@ -27,13 +27,13 @@
     
     - name: Create an Inventory
       inventory:
-        name: "{{ set_tower_inventory_name }}"
-        description: "{{ set_tower_inventory_name }}"
+        name: "{{ set_remote_server_inventory_name }}"
+        description: "{{ set_remote_server_inventory_name }}"
         organization: "{{ set_tower_organization_name }}"
         state: present
         variables:
           ansible_connection: ssh
-          ansible_user: "{{ set_inventory_ansible_user }}"
+          ansible_user: "{{ set_remote_server_ansible_user }}"
       environment:
         TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
         TOWER_USERNAME: "admin"
@@ -41,11 +41,11 @@
 
     - name: Create a Host
       host:
-        name: "{{ set_tower_host_name }}"
-        inventory: "{{ set_tower_inventory_name }}"
+        name: "{{ set_remote_server_host_name }}"
+        inventory: "{{ set_remote_server_inventory_name }}"
         state: present
         variables:
-          ansible_host: "{{ set_tower_host_url }}"
+          ansible_host: "{{ set_remote_server_host_url }}"
       environment:
         TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
         TOWER_USERNAME: "admin"
@@ -65,8 +65,9 @@
     - name: Create a Job Template
       job_template:
         name: "{{ set_tower_job_template_name }}"
+        Description: "{{ set_tower_job_template_name }}"
         project: "{{ set_tower_project_name }}"
-        inventory: "{{ set_tower_inventory_name }}"
+        inventory: "{{ set_remote_server_inventory_name }}"
         playbook: "{{ set_tower_job_template_playbook_name }}"
         extra_vars:
           db_backup_folder_path: "{{ set_remote_db_backup_folder_path }}"
@@ -95,11 +96,31 @@
         TOWER_USERNAME: "admin"
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
         
-    # - name: Create Credential
-  #   - name: Fetch private key
-  # slurp:
-  #   src: '$HOME/.ssh/aws-private.pem'
-  # register: aws_ssh_key
+    - name: Add SSH key for remote machine
+      credential:
+        name: "{{ set_remote_server_ssh_key_credentials_name }}"
+        description: "{{ set_remote_server_ssh_key_credentials_name }}"
+        organization: "{{ set_tower_organization_name }}"
+        state: present
+        credential_type: Machine
+        inputs:
+          username: "{{ set_remote_server_ansible_user }}"
+          ssh_key_data: "{{ lookup('file', set_remote_server_ssh_key_path ) }}"
+          ssh_key_unlock: "{{ set_remote_server_ssh_key_pass }}"
+      environment:
+        TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
+        TOWER_USERNAME: "admin"
+        TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
-    # - name: Create Schedule
-
+    - name: Create a Schedule
+      schedule:
+        name: "Koha Daily backup - template run 5am"
+        description: "Koha Daily backup - template run 5am"
+        state: present
+        unified_job_template: "{{ set_tower_job_template_name }}"
+        rrule: "DTSTART;TZID=Pacific/Auckland:20210101T050000 RRULE:FREQ=DAILY;INTERVAL=1"
+        validate_certs: false
+      environment:
+        TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
+        TOWER_USERNAME: "admin"
+        TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
