@@ -65,7 +65,7 @@
     - name: Create a Job Template
       job_template:
         name: "{{ set_tower_job_template_name }}"
-        Description: "{{ set_tower_job_template_name }}"
+        description: "{{ set_tower_job_template_name }}"
         project: "{{ set_tower_project_name }}"
         inventory: "{{ set_remote_server_inventory_name }}"
         playbook: "{{ set_tower_job_template_playbook_name }}"
@@ -114,8 +114,8 @@
 
     - name: Create a Schedule
       schedule:
-        name: "Koha Daily backup - template run 5am"
-        description: "Koha Daily backup - template run 5am"
+        name: "{{ set_tower_project_name }} - daily"
+        description: "{{ set_tower_project_name }} - daily"
         state: present
         unified_job_template: "{{ set_tower_job_template_name }}"
         rrule: "DTSTART;TZID=Pacific/Auckland:20210101T050000 RRULE:FREQ=DAILY;INTERVAL=1"
