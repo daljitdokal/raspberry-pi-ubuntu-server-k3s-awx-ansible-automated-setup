@@ -10,11 +10,11 @@
   tasks:
     - name: Create awx auth variables
       shell: |
-        echo "http://{{ lookup('dig', ansible_host) }}:$(sudo k3s kubectl get service awx-service -n awx -o yaml | grep nodePort | awk '{print $2}' )"
+        echo "http://localhost:$(sudo k3s kubectl get service awx-service -n awx -o yaml | grep nodePort | awk '{print $2}' )"
         echo "$(sudo k3s kubectl get secret awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode)"
       register: awx_auth
       become: true
-    
+
     - name: Create a new organization
       organization:
         name: "{{ set_tower_organization_name }}"
@@ -57,97 +57,46 @@
         organization: "{{ set_tower_organization_name }}"
         scm_type: git
         scm_url: "{{ set_tower_project_git_url }}"
+        default_environment: "Control Plane Execution Environment"
       environment:
         TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
         TOWER_USERNAME: "admin"
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
-    # - name: Create Credential Types
-    #   uri:
-    #     method: POST
-    #     body_format: json
-    #     status_code: [200, 201, 202]
-    #     url: "{{ awx_auth.stdout_lines[0] }}/api/v2/credential_types/"
-    #     user: "admin"
-    #     password: "{{ awx_auth.stdout_lines[1] }}"
-    #     body: "{\"type\":\"credential_type\",\"name\": \"{{ set_tower_database_credential_type_name }}\" ,\"description\": \"\" ,\"kind\":\"cloud\",\"managed\":false,\"inputs\":{\"fields\":[{\"id\":\"db_name\",\"type\":\"string\",\"label\":\"DB name\",\"secret\":false},{\"id\":\"db_user_name\",\"type\":\"string\",\"label\":\"DB user name\",\"secret\":false},{\"id\":\"db_user_password\",\"type\":\"string\",\"label\":\"DB user password\",\"secret\":true}],\"required\":[\"db_name\",\"db_user_name\",\"db_user_password\"]},\"injectors\":{\"extra_vars\":{\"db_name\":\"{{ db_name }}\",\"db_user_name\":\"{{ db_user_name }}\",\"db_user_password\":\"{{ db_user_password }}\" }}}"
-    #     validate_certs: False
-    #     force_basic_auth: yes
-    #   register: outcome
-
-    # - name: Create Credential Types - post
-    #   uri:
-    #     url: "{{ awx_auth.stdout_lines[0] }}/api/v2/credential_types/"
-    #     method: POST
-    #     body_format: json
-    #     status_code: [200, 201, 202]
-    #     force_basic_auth: yes
-    #     validate_certs: False
-    #     user: "admin"
-    #     password: "{{ awx_auth.stdout_lines[1] }}"
-    #     body:
-    #       name: "{{ set_tower_database_credential_type_name }} - post"
-    #       description: "{{ set_tower_database_credential_type_name }} - post"
-    #       type: "credential_type"
-    #       kind: "cloud"
-    #       inputs:
-    #         fields:
-    #           - id: db_name
-    #             type: string
-    #             label: DB name
-    #             secret: false
-    #           - id: db_user_name
-    #             type: string
-    #             label: DB user name
-    #             secret: false
-    #           - id: db_user_password
-    #             type: string
-    #             label: DB user password
-    #             secret: true
-    #         required:
-    #           - db_name
-    #           - db_user_name
-    #           - db_user_password
-    #       injectors:
-    #         extra_vars:
-    #           db_name: "{{ db_name }}"
-    #           db_user_name: "{{ db_user_name }}"
-    #           db_user_password : "{{ db_user_password }}"
-
-    # - name: Create Credential Types
-      # credential_type:
-      #   name: "{{ set_tower_database_credential_type_name }}"
-      #   description: "{{ set_tower_database_credential_type_name }}"
-      #   kind: cloud
-      #   inputs:
-      #       fields:
-      #         - id: db_name
-      #           type: string
-      #           label: DB name
-      #           secret: false
-      #         - id: db_user_name
-      #           type: string
-      #           label: DB user name
-      #           secret: false
-      #         - id: db_user_password
-      #           type: string
-      #           label: DB user password
-      #           secret: true
-      #       required:
-      #         - db_name
-      #         - db_user_name
-      #         - db_user_password
-      #   injectors:
-      #     extra_vars:
-      #       db_name: "{{ db_name }}"
-      #       db_user_name: "{{ db_user_name }}"
-      #       db_user_password: "{{ db_user_password }}"
-      #   state: present
-      #   validate_certs: false
-      # environment:
-      #   TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
-      #   TOWER_USERNAME: "admin"
-      #   TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
+    - name: Create Credential Types
+      credential_type:
+        name: "{{ set_tower_database_credential_type_name }}"
+        description: "{{ set_tower_database_credential_type_name }}"
+        kind: cloud
+        inputs:
+            fields:
+              - id: db_name
+                type: string
+                label: DB name
+                secret: false
+              - id: db_user_name
+                type: string
+                label: DB user name
+                secret: false
+              - id: db_user_password
+                type: string
+                label: DB user password
+                secret: true
+            required:
+              - db_name
+              - db_user_name
+              - db_user_password
+        injectors:
+          extra_vars:
+            db_name: "{{ db_name }}"
+            db_user_name: "{{ db_user_name }}"
+            db_user_password: "{{ db_user_password }}"
+        state: present
+        validate_certs: false
+      environment:
+        TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
+        TOWER_USERNAME: "admin"
+        TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
 
     - name: Add Database Credential Types
       credential:
@@ -213,3 +162,12 @@
         TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
         TOWER_USERNAME: "admin"
         TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
+
+    - name: Wait for 1 min
+      pause:
+        minutes: 1
+
+    - name: Update .git permissions in awx-ee container
+      shell: |
+        k3s kubectl -n awx exec $(k3s kubectl get pods -n awx | grep 4/4 | awk '{print $1}') -c awx-ee -- sh -c "chmod 777 -R /var/lib/awx/projects/"
+      become: true

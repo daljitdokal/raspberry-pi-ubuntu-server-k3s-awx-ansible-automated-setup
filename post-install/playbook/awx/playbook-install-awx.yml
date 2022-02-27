@@ -2,6 +2,10 @@
 - name: Install AWX
   hosts: k3s_cluster
   gather_facts: false
+  vars_files:
+    - ../../global_vars/awx_config_vars.yaml
+  collections:
+    - awx.awx
   tasks:
     - name: Create variables
       set_fact:
@@ -53,3 +57,54 @@
         path: "{{ set_local_path }}"
         state: absent
       become: true
+
+    - name: Wait for AWX installation (0/40)
+      pause:
+        minutes: 10
+
+    - name: Wait for AWX installation (10/40)
+      pause:
+        minutes: 10
+
+    - name: Wait for AWX installation (20/40)
+      pause:
+        minutes: 10
+
+    - name: Wait for AWX installation (30/40)
+      pause:
+        minutes: 10
+
+    - name: Create awx auth variables
+      shell: |
+        echo "http://localhost:$(sudo k3s kubectl get service awx-service -n awx -o yaml | grep nodePort | awk '{print $2}' )"
+        echo "$(sudo k3s kubectl get secret awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode)"
+      register: awx_auth
+      become: true
+    
+    - name: Add mount volume path to instance group
+      instance_group: 
+        name : default
+        pod_spec_override: |
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            namespace: awx
+          spec:
+            containers:
+              - image: 'quay.io/ansible/awx-ee:0.4.0'
+                name: worker
+                args:
+                  - ansible-runner
+                  - worker
+                  - '--private-data-dir=/runner'
+                volumeMounts:
+                  - mountPath: {{ set_volume_mount_path }}
+                    name: backup
+            volumes:
+            - name: backup
+              hostPath:
+                path: {{ set_volume_mount_path }}
+      environment:
+        TOWER_HOST: "{{ awx_auth.stdout_lines[0] }}"
+        TOWER_USERNAME: "admin"
+        TOWER_PASSWORD: "{{ awx_auth.stdout_lines[1] }}"
