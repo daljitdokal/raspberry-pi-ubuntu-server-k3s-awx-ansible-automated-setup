@@ -40,9 +40,9 @@ cp -R inventory/sample inventory/geeky-server-build
 
 Make sure to update:
 
-- `server-ip` in hosts.ini
-- `ansible_user` in `all.yml` file
-- `remote_port` and `remote_user` in `ansible.cfg`
+- `server-ip` in `hosts.ini` file.
+- `ansible_user` in `all.yml` file.
+- `remote_port` and `remote_user` in `ansible.cfg` file.
 
 ### Config ansible global variables
 
