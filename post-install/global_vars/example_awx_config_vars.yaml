@@ -1,7 +1,7 @@
 set_volume_mount_path: "/mnt/backup"
 
 set_tower_organization_name: "My organisation"
-set_remote_server_ansible_user: ""
+set_remote_server_ansible_user: "[name]"
 set_remote_server_inventory_name: "Remote Server"
 set_remote_server_ssh_key_credentials_name: "SSH key for remote server"
 set_remote_server_ssh_key_path: "~/.ssh/[name]"
