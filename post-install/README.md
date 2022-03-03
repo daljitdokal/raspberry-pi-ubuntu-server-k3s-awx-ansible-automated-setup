@@ -99,4 +99,5 @@ Port forwording is require before running the `step2-post-install-config.sh` scr
 ```
 Wait for 1-2 minutes to fully complete the process.
 
-**You just completed the installation and congifration of an AWX instance. Congratulations!!!!**
+## Congratulations!!!!
+You just completed the installation and congifration of an AWX instance :)
