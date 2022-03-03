@@ -3,14 +3,14 @@
 2. SD card with at least 1GB, or at least 128MB for USB root install (without customization)
 3. Ethernet or wireless LAN with a working internet connection
 
-## Format SD card
-1. Format SD card or [Restore USB Drive if it has been used before](https://github.com/daljitdokal/raspberry-pi-server-minimal-setup/blob/ubuntu-server/restore-usb-drive.org)
-
 
 # Steps
 Create the bootable SD Card with a minimal install of Ubuntu Server 20.04 x64, which is a free and open source operating system based on Debian.
 
-## Step 1: Download sd card imaging
+## Step 1: Restore USB Drive
+1. Format SD card or [Restore USB Drive if it has been used before](https://github.com/daljitdokal/raspberry-pi-server-minimal-setup/blob/ubuntu-server/restore-usb-drive.org)
+
+## Step 2: Download SD card imaging
 - To simplify the sd card creation process we can use the open source rpi-imager utility, the code snippet below will download the latest release:
 ```bash
 export GET_USER="Dalji" # $USER
@@ -42,11 +42,11 @@ cmd.exe /mnt/c/Users/$GET_USER/Downloads/imager.exe
 
 Once you’ve selected the operating system and sd card, click `WRITE`. The process will take a few minutes to complete.
 
-## Step 4: Custom configration
-Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card.
+## Step 4: Custom configuration
+Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card. Do this by executing the following script. 
 
 ```bash
-./custom-configration.sh
+./custom-configuration.sh
 ```
 
 **Note:** 
