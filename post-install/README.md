@@ -1,5 +1,5 @@
 # Introduction
-The puspose of these playbooks are to automate end to end process to setup my server. So that I can setup a daily `mysql` database schedule from a remote server.
+The purpose of these playbooks are to automate end to end process to setup my server. So that I can setup a daily `mysql` database schedule from a remote server.
 
 In these playbooks we configure:
 - Operating system `ubuntu` for `k3s`
