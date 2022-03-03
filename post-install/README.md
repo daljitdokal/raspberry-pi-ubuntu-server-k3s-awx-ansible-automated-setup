@@ -86,7 +86,7 @@ Once `awx` is up and running, create a port forwording to access awx locally, so
 ```bash
 ssh -L 8000:127.0.0.1:[AWX-PORT] [SERVER-USER]@[SERVER-IP] -p [SERVER-PORT]
 ```
-Now open your web browser and paste `http://127.0.0.1:8000`. Show should be able to view `awx` locally.
+Now open your web browser and paste `http://127.0.0.1:8000`. You should be able to view `awx` locally.
 
 **Note:** 
 
