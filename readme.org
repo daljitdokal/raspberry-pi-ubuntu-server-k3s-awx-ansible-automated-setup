@@ -5,7 +5,7 @@
 #+DATE: 28th April 2021
 
 ** Overview
-The purpose of this repository is to fully automate end to end process of installation and configuration of my `raspberry-pi` backup server. 
+The purpose of this repository is to create end to end process of installation and configuration of `raspberry-pi` backup server.
 
 ** Requirements
 1. A Raspberry Pi (from model 1B up to 4B, 3A+, 3B+ or Zero including Zero W)
@@ -14,6 +14,7 @@ The purpose of this repository is to fully automate end to end process of instal
 
 ** Documentation:
 1. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][Install ubuntu-server on raspberry-pi and enable remote ssh]].
-2. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-1---install-k3s-and-awx][Install k3s and awx]] via ansible palybook.
-3. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-2---configure-and-schedule-awx-job][Configure and schedule awx job]] via ansible palybook to backup mysql database from remote server.
+2. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/mount-harddrive.md][Mount new harddrive to ubuntu server]]
+3. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-1---install-k3s-and-awx][Install k3s and awx]] via ansible palybook.
+4. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-2---configure-and-schedule-awx-job][Configure and schedule awx job]] via ansible palybook to backup mysql database from remote server.
 
