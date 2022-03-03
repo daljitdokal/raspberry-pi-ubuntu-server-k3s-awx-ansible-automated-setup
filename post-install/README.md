@@ -25,25 +25,19 @@ Deployment environment must have Ansible 2.4.0+
 Master and nodes must have passwordless SSH access
 
 # Post install
+### Config ansible to match your requirents.
 Create a new directory based on the `sample` directory within the `inventory` directory:
 
 ```bash
 cp -R inventory/sample inventory/geeky-server-build
 ```
+**Note:**
+Make sure to update 
+- `server-ip` in hosts.ini
+- `ansible_user` in `all.yml` file and 
 
-Edit `inventory/geeky-server-build/hosts.ini` to match the system information gathered above. For example:
-
-```bash
-[master]
-192.168.0.202
-
-[k3s_cluster:children]
-master
-```
-
-If needed, you can also edit `inventory/geeky-server-build/group_vars/all.yml` to match your environment.
-
-Edit `global_vars/example_awx_config_vars.yaml` to pass the required values:
+**Config `awx_config_vars.yaml`**
+Setup default values for ansible paybook
 ```bash
 cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 ```
