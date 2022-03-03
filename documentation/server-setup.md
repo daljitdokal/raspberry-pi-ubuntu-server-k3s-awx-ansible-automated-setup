@@ -45,17 +45,7 @@ Once you’ve selected the operating system and sd card, click `WRITE`. The proc
 ## Step 4: Custom configration
 Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card.
 
-Note: The code block below assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
+Note: Rcript assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
 ```bash
-echo Mount the new partition in wsl
-sudo mkdir /mnt/d
-sudo mount -t drvfs d: /mnt/d/
-
-echo Copy the contents of installer to sd
-cp config/network-config /mnt/d/
-cp config/user-data /mnt/d/
-cp config/cmdline.txt /mnt/d/
-
-# We need to wait before we can eject
-sudo umount /mnt/d
+./custom-configration.sh
 ```
