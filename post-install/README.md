@@ -94,7 +94,7 @@ Now open your web browser and paste `http://127.0.0.1:8000`. You should be able 
 
 Port forwording is require before running the `step2-post-install-config.sh` script to create `awx credential type` for database credentials. Awx collections has bug that unable to pass jinja variables in injectors.
 
-### Job - Daily mysql database backup from remote server
+### Create job template - Daily mysql database backup from remote server.
 
 ```bash
 ./step2-post-install-config.sh
