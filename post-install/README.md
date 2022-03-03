@@ -13,7 +13,9 @@ Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a 
 - [X] Debian
 - [X] Ubuntu
 - [X] CentOS
+
 on processor architecture:
+
 - [X] x64
 - [X] arm64 [I used]
 - [X] armhf
@@ -23,12 +25,13 @@ Deployment environment must have Ansible 2.4.0+
 Master and nodes must have passwordless SSH access
 
 # Post install
-First create a new directory based on the `sample` directory within the `inventory` directory:
+Create a new directory based on the `sample` directory within the `inventory` directory:
 
 ```bash
 cp -R inventory/sample inventory/geeky-server-build
 ```
-Second, edit `inventory/geeky-server-build/hosts.ini` to match the system information gathered above. For example:
+
+Edit `inventory/geeky-server-build/hosts.ini` to match the system information gathered above. For example:
 
 ```bash
 [master]
@@ -37,9 +40,10 @@ Second, edit `inventory/geeky-server-build/hosts.ini` to match the system inform
 [k3s_cluster:children]
 master
 ```
+
 If needed, you can also edit `inventory/geeky-server-build/group_vars/all.yml` to match your environment.
 
-Edit 'global_vars/example_awx_config_vars.yaml' to pass the required values:
+Edit `global_vars/example_awx_config_vars.yaml` to pass the required values:
 ```bash
 cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 ```
