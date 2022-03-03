@@ -8,7 +8,7 @@
 Create the bootable SD Card with a minimal install of Ubuntu Server 20.04 x64, which is a free and open source operating system based on Debian.
 
 ## Step 1: Restore USB Drive
-1. Format SD card or [Restore USB Drive if it has been used before](https://github.com/daljitdokal/raspberry-pi-server-minimal-setup/blob/ubuntu-server/restore-usb-drive.org)
+Format SD card or [Restore USB Drive if it has been used before](https://github.com/daljitdokal/raspberry-pi-server-minimal-setup/blob/ubuntu-server/restore-usb-drive.org)
 
 ## Step 2: Download SD card imaging
 - To simplify the sd card creation process we can use the open source rpi-imager utility, the code snippet below will download the latest release:
