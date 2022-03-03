@@ -1,1 +1,3 @@
-awx_config_vars.yaml
+*
+!.gitignore
+!awx_config_vars.yaml
