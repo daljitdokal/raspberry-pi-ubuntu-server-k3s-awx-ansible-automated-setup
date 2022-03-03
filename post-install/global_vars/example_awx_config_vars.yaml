@@ -24,4 +24,4 @@ db_user_name: ""
 db_user_password: ""
 set_remote_server_ssh_key_pass: ""
 
-set_schedule: "DTSTART;TZID=Pacific/Auckland:20230101T050000 RRULE:FREQ=DAILY;INTERVAL=1"
+set_schedule: "DTSTART;TZID=Pacific/Auckland:20220101T050000 RRULE:FREQ=DAILY;INTERVAL=1"
