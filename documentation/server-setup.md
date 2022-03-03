@@ -51,4 +51,4 @@ Note: Script assumes the SD Card boot partition will be `D:\`. You may need to a
 ```
 
 ## Step 5: Bootup raspberry-pi
-Our SD is ready. Please insert it into rasbberry-pi and boot up.
+Our SD card is ready. Please insert it into rasbberry-pi and boot up.
