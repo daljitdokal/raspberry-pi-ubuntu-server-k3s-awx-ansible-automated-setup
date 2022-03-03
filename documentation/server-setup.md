@@ -45,10 +45,11 @@ Once you’ve selected the operating system and sd card, click `WRITE`. The proc
 ## Step 4: Custom configration
 Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card.
 
-Note: Script assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
+**Note:** 
+- Script assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
 ```bash
 ./custom-configration.sh
 ```
 
 ## Step 5: Bootup raspberry-pi
-Our SD card is ready. Please insert it into rasbberry-pi and boot up.
+Our SD card is ready. Lets insert it into rasbberry-pi and boot up.
