@@ -29,7 +29,7 @@ Master and nodes must have passwordless SSH access
 
 # Post install
 
-### Config ansible to match your requirents.
+### Config ansible host
 
 Create a new directory based on the `sample` directory within the `inventory` directory:
 
@@ -38,18 +38,20 @@ cp -R inventory/sample inventory/geeky-server-build
 ```
 **Note:**
 
-Make sure to update :
+Make sure to update:
 
 - `server-ip` in hosts.ini
 - `ansible_user` in `all.yml` file and 
 
-**Config `awx_config_vars.yaml`**
+### Config ansible global variables
 
 Setup default values for ansible paybook
 
 ```bash
 cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 ```
+**Note:**
+Make sure to update/add required global variables.
 
 ## STEP 1 - Install `k3s` and `awx`
 
@@ -58,9 +60,9 @@ cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 ```
 Wait for 30-40 minutes to fully complete the process.
 
-### Login to `awx` web GUI locally via port forwarding.
+### Access `awx` GUI locally via port forwarding.
 
-Login to your server and run folloing commands:
+Login to your server and run following commands to:
 
 **Get awx url**
 
@@ -69,7 +71,7 @@ echo "http://localhost:$(sudo k3s kubectl get service awx-service -n awx -o yaml
 ```
 **Get awx username:**
 
-admin (By default)
+admin (by default)
 
 **Get awx password**
 
