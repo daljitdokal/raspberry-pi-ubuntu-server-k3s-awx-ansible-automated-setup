@@ -1,0 +1,17 @@
+fields:
+  - id: db_name
+    type: string
+    label: DB name
+    secret: false
+  - id: db_user_name
+    type: string
+    label: DB user name
+    secret: false
+  - id: db_user_password
+    type: string
+    label: DB user password
+    secret: true
+required:
+  - db_name
+  - db_user_name
+  - db_user_password
