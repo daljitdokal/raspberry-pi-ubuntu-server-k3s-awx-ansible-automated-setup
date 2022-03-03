@@ -5,7 +5,7 @@
 
 
 # Steps
-Create the bootable SD Card with a minimal install of Ubuntu Server 20.04 x64, which is a free and open source operating system based on Debian.
+Create the bootable SD card with a minimal install of Ubuntu Server 20.04 x64, which is a free and open source operating system based on Debian.
 
 ## Step 1: Download SD card imaging
 - Format SD card or [Restore USB Drive if it has been used before](https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/restore-usb-drive.md)
@@ -41,7 +41,7 @@ cmd.exe /mnt/c/Users/$GET_USER/Downloads/imager.exe
 Once you’ve selected the operating system and sd card, click `WRITE`. The process will take a few minutes to complete.
 
 ## Step 3: Custom configuration
-Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card. Do this by executing the following script. 
+Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD card. Do this by executing the following script. 
 
 ```bash
 ./custom-configuration.sh
@@ -49,7 +49,7 @@ Our next step is to copy the custom `user-data` and `network-config` files inclu
 
 **Note:** 
 - Make sure to update `user-data` and `network-config` files as per your requirements.
-- Script assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
+- Script assumes the SD card boot partition will be `D:\`. You may need to adjust for your environment.
 
 ## Step 4: Bootup raspberry-pi
 Our SD card is ready. Lets insert it into rasbberry-pi and boot up.
