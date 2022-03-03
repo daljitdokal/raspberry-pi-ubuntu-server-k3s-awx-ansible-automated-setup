@@ -19,7 +19,7 @@ Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a 
 on processor architecture:
 
 - [X] x64
-- [X] arm64 [I used]
+- [X] arm64 [our current setup]
 - [X] armhf
 
 ### System requirements
@@ -41,7 +41,8 @@ cp -R inventory/sample inventory/geeky-server-build
 Make sure to update:
 
 - `server-ip` in hosts.ini
-- `ansible_user` in `all.yml` file and 
+- `ansible_user` in `all.yml` file
+- `remote_port` and `remote_user` in `ansible.cfg`
 
 ### Config ansible global variables
 
