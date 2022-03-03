@@ -52,7 +52,8 @@ Setup default values for ansible paybook
 cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 ```
 **Note:**
-Make sure to update/add required global variables.
+
+- Make sure to update global variables.
 
 ## STEP 1 - Install `k3s` and `awx`
 
