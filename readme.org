@@ -12,16 +12,8 @@ The purpose of this repository is to fully automate the installation and configu
 2. SD card with at least 1GB, or at least 128MB for USB root install (without customization)
 3. ethernet or wireless LAN with a working internet connection
 
-** Install instructions
-1. Format SD card or [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/restore-usb-drive.org][Restore USB Drive if it has been used before]]
-2. Write the installer to the SD card
-3. Provide unattended installation settings (optional) or follow the first boot steps later
-4. Power on the Raspberry Pi and wait until the installation is done
+** Steps:
+1. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][Install ubuntu-server on raspberry-pi and enable remote ssh]].
+2. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-1---install-k3s-and-awx][Install k3s and awx]].
+3. [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#step-2---configure-and-schedule-awx-job][Configure and schedule awx job].
 
-** Documentation
-Steps:
-1. Build [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][Ubuntu-server on raspberry-pi]]
-2. Enable [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/blob/ubuntu-server/documentation/server-setup.md][remote ssh]]
-3. Build a Kubernetes cluster using [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx][Ansible with k3s]]
-4. Install [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#install-k3s-and-awx][AWX with Ansible Playbook]]
-5. Configure and schedule awx jobs [[https://github.com/daljitdokal/raspberry-pi-ubuntu-server-k3s-awx-ansible-automated-setup/tree/ubuntu-server/post-install#configure-and-schedule-awx-job][with Ansible Playbook]]
