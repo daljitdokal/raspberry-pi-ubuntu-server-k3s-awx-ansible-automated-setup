@@ -46,6 +46,7 @@ Once you’ve selected the operating system and sd card, click `WRITE`. The proc
 Our next step is to copy the custom `user-data` and `network-config` files included in this repository to the newly created SD Card.
 
 **Note:** 
+- Make sure to update `user-data` and `network-config` files as per your requirements.
 - Script assumes the SD Card boot partition will be `D:\`. You may need to adjust for your environment.
 ```bash
 ./custom-configration.sh
