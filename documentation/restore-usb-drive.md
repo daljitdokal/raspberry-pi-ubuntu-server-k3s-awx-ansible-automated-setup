@@ -27,4 +27,5 @@ Please use following steps to restore USB drive:
 - Select the desired `option` and click `Format`.
 
 **Note:** 
+
 The SD card formats supported by the Raspberry Pi bootloader are `FAT16` and `FAT32` only. So, it is quite obvious that using the SD cards with higher capacities(SDXC) won't work. In order to make SDXC cards compatible with Raspberry Pi, you will require to format the card into `FAT32`.
