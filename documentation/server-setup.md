@@ -57,7 +57,7 @@ Our SD card is ready. Lets insert it into rasbberry-pi and boot up.
 
 ## Step 5: Post install ssh configuration
 
-Login to `reaspberry-pi`
+Login to `raspberry-pi`
 ```bash
 ssh 192.168.0.202 -p 22
 ```
