@@ -53,3 +53,24 @@ Our next step is to copy the custom `user-data` and `network-config` files inclu
 
 ## Step 4: Bootup raspberry-pi
 Our SD card is ready. Lets insert it into rasbberry-pi and boot up.
+
+
+## Step 4: Post install ssh configuration
+
+Login to `reaspberry-pi`
+```bash
+ssh 192.168.0.202 -p 22
+```
+#### Update color
+```bash
+echo " " >>  ~/.bashrc
+echo "# Update color" >>  ~/.bashrc
+echo "PS1='\[\033[02;31m\]\u@\H:\[\033[01;34m\]\w$\[\033[00m\] '" >>  ~/.bashrc
+. .bashrc
+```
+
+#### Update default port
+```bash
+sudo sed -i "s/#Port 22/Port 2222/" /etc/ssh/sshd_config
+sudo systemctl restart sshd
+```
