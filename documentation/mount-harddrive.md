@@ -5,18 +5,12 @@ The purpose of this documentation is to attached new harddrive to `raspberry-pi`
 
 Please attach new harddrive to `raspberry-pi` and use following commands to mount new harddrive to `ubuntu-server`.
 
-View list:
-```bash
-sudo lsblk
-sudo fdisk /dev/sda 
-m
-```
-
 Create new partition:
 
 ```bash
 sudo fdisk /dev/sda 
 m
+d # If hard drive used before, else skip
 n
 ```
 
@@ -24,7 +18,6 @@ Create/format file system:
 
 ```bash
 sudo mkfs.ext4 /dev/sda1
-
 ```
 
 Create mount point `/mn/backup`:
