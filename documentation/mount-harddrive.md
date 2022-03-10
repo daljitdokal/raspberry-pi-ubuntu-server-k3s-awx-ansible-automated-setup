@@ -8,6 +8,7 @@ Please attach new harddrive to `raspberry-pi` and use following commands to moun
 Create new partition:
 
 ```bash
+sudo lsblk
 sudo fdisk /dev/sda 
 m
 d # If hard drive used before, else skip
