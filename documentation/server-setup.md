@@ -55,7 +55,7 @@ Our next step is to copy the custom `user-data` and `network-config` files inclu
 Our SD card is ready. Lets insert it into rasbberry-pi and boot up.
 
 
-## Step 4: Post install ssh configuration
+## Step 5: Post install ssh configuration
 
 Login to `reaspberry-pi`
 ```bash
