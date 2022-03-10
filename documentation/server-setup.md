@@ -61,10 +61,10 @@ Login to `raspberry-pi`
 ```bash
 ssh 192.168.0.202 -p 22
 ```
-#### Update color
+#### Update colour
 ```bash
 echo " " >>  ~/.bashrc
-echo "# Update color" >>  ~/.bashrc
+echo "# Update colour" >>  ~/.bashrc
 echo "PS1='\[\033[02;31m\]\u@\H:\[\033[01;34m\]\w$\[\033[00m\] '" >>  ~/.bashrc
 . .bashrc
 ```
