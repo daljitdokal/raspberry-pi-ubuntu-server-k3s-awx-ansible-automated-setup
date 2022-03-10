@@ -39,7 +39,7 @@
 
     - name: Wait for pvc to be created
       pause:
-        minutes: 3
+        minutes: 5
 
     - name: Update pvc permissions
       shell: |
