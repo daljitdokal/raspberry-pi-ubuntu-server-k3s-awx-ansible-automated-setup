@@ -1,5 +1,10 @@
 echo "Mount the new partition in wsl"
-sudo mkdir /mnt/d
+if [ -d "/mnt/d" ]; then
+    echo "Folder already exits."
+else
+    sudo mkdir /mnt/d
+fi
+
 sudo mount -t drvfs d: /mnt/d/
 
 echo "Copy the contents of installer to sd"
