@@ -22,13 +22,13 @@ Create/format file system:
 sudo mkfs.ext4 /dev/sda1
 ```
 
-Create mount point `/mn/backup`:
+Create mount point `/mnt/backup`:
 
 ```bash
 cd /mnt 
 sudo mkdir backup
-sudo chown $USER:$USER backup -R
 sudo mount /dev/sda1 /mnt/backup
+sudo chown $USER:$USER backup -R
 ```
 
 ### Create partition mount at boot
