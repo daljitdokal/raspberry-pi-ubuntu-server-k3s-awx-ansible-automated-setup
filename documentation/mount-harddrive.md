@@ -28,7 +28,7 @@ Create mount point `/mnt/backup`:
 cd /mnt 
 sudo mkdir backup
 sudo mount /dev/sda1 /mnt/backup
-sudo chown $USER:$USER backup -R
+sudo chown $USER:$USER /mnt -R
 ```
 
 ### Create partition mount at boot
