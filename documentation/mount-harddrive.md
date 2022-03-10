@@ -13,6 +13,7 @@ sudo fdisk /dev/sda
 m
 d # If hard drive used before, else skip
 n
+w
 ```
 
 Create/format file system:
