@@ -78,7 +78,7 @@ admin (by default)
 **Get awx password**
 
 ```bash
-echo sudo k3s kubectl get secret awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode
+echo $(sudo k3s kubectl get secret awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode)
 ```
 
 ## STEP 2 - Configure and schedule `awx` job
