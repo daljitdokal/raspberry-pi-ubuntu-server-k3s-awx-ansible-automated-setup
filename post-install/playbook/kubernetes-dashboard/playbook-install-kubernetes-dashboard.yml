@@ -30,5 +30,4 @@
       shell: |
         cd {{ set_dest_path }}
         k3s kubectl apply -f sa-kubernetes-dashboard.yaml -n {{ get_namespace }}
-        echo "Create instance of awx"
       become: true
