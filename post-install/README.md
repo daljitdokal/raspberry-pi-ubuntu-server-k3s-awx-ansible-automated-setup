@@ -101,5 +101,29 @@ Port forwording is require before running the `step2-post-install-config.sh` scr
 ```
 Wait for 1-2 minutes to fully complete the process.
 
-## Congratulations!!!!
+### Congratulations!!!!
 You just completed the installation and congifration of an AWX instance :)
+
+
+## STEP 3 - Install `kubernetes-dashboard`
+
+Following script will install the `kubernetes-dashboard` on port `32323` and also will create a `serviceaccount` for dashboard to access cluster resources.
+
+```bash
+./step3-install-kubernetes-dashboard.sh
+```
+
+### Access `kubernetes-dashboard` GUI locally via port forwarding.
+
+Create a port forwording to access dashboard locally via running the following command.
+
+```bash
+ssh -L 8001:127.0.0.1:32323 [SERVER-USER]@[SERVER-IP] -p [SERVER-PORT]
+```
+Now open your web browser and paste `http://127.0.0.1:8001`. You should be able to view `kubernetes-dashboard` locally.
+
+**Get dashboard token**
+
+```bash
+
+```
