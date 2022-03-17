@@ -120,7 +120,7 @@ Create a port forwording to access dashboard locally via running the following c
 ```bash
 ssh -L 8001:127.0.0.1:32323 [SERVER-USER]@[SERVER-IP] -p [SERVER-PORT]
 ```
-Now open your web browser and paste `http://127.0.0.1:8001`. You should be able to view `kubernetes-dashboard` locally.
+Now open your web browser and paste `https://127.0.0.1:8001` (make sure its `https://`). You should be able to view `kubernetes-dashboard` locally.
 
 **Get dashboard token**
 
