@@ -125,5 +125,5 @@ Now open your web browser and paste `http://127.0.0.1:8001`. You should be able 
 **Get dashboard token**
 
 ```bash
-
+echo $(sudo k3s kubectl -n kubernetes-dashboard get secret $(sudo k3s kubectl get serviceaccount dashboard-user -n kubernetes-dashboard -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode)
 ```
