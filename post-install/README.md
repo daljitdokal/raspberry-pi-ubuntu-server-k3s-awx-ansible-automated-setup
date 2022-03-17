@@ -55,6 +55,7 @@ cp global_vars/example_awx_config_vars.yaml global_vars/awx_config_vars.yaml
 
 - Make sure to update global variables.
 
+
 ## STEP 1 - Install `k3s` and `awx`
 
 ```bash
@@ -81,6 +82,7 @@ admin (by default)
 echo $(sudo k3s kubectl get secret awx-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode)
 ```
 
+
 ## STEP 2 - Configure and schedule `awx` job
 
 Once `awx` is up and running, create a port forwording to access awx locally, so that we can run awx cli.
@@ -101,9 +103,6 @@ Port forwording is require before running the `step2-post-install-config.sh` scr
 ```
 Wait for 1-2 minutes to fully complete the process.
 
-### Congratulations!!!!
-You just completed the installation and congifration of an AWX instance :)
-
 
 ## STEP 3 - Install `kubernetes-dashboard`
 
@@ -112,6 +111,7 @@ Following script will install the `kubernetes-dashboard` on port `32323` and als
 ```bash
 ./step3-install-kubernetes-dashboard.sh
 ```
+Wait for 1-2 minutes to fully complete the process.
 
 ### Access `kubernetes-dashboard` GUI locally via port forwarding.
 
