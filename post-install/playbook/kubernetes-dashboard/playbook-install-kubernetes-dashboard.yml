@@ -1,0 +1,34 @@
+---
+- name: Install kubernetes dashboard
+  hosts: k3s_cluster
+  gather_facts: false
+  tasks:
+    - name: Create variables
+      set_fact:
+        get_namespace: kubernetes-dashboard
+        set_local_path: "../kubernetes-dashboard/"
+        set_dest_path: "/tmp/dashboard"
+    
+    - name: Copy files to remote server
+      ansible.builtin.copy:
+        src: "{{ set_local_path }}"
+        dest: "{{ set_dest_path }}"
+      become: true
+
+    - name: Create new namespace
+      shell: |
+        k3s kubectl create namespace {{ get_namespace }} --dry-run=client -o yaml | k3s kubectl apply -f -
+      become: true
+
+    - name: Create kubernetes dashboard instance
+      shell: |
+        cd {{ set_dest_path }}
+        k3s kubectl apply -f kubernetes-dashboard.yaml -n {{ get_namespace }}
+      become: true
+
+    - name: Create service account for kubernetes dashboard
+      shell: |
+        cd {{ set_dest_path }}
+        k3s kubectl apply -f sa-kubernetes-dashboard.yaml -n {{ get_namespace }}
+        echo "Create instance of awx"
+      become: true
